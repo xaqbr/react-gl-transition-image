@@ -7,7 +7,7 @@ import useResizeObserver from 'use-resize-observer';
 import blobbyTransition from '../transitions/blobby.glsl';
 import maskTransition from '../transitions/mask.glsl';
 
-const ReactGlTransitionImage = React.forwardRef((props, ref) => {
+function ReactGlTransitionImage(props) {
     const {
         className,
         src,
@@ -49,7 +49,7 @@ const ReactGlTransitionImage = React.forwardRef((props, ref) => {
     // load image & optional texture data
 
     React.useEffect(() => {
-        if(typeof loadAssetsOn !== 'undefined' && !loadAssetsOn) {
+        if (typeof loadAssetsOn !== 'undefined' && !loadAssetsOn) {
             return;
         }
 
@@ -313,7 +313,6 @@ const ReactGlTransitionImage = React.forwardRef((props, ref) => {
         >
             {progress <= 1 && (
                 <div
-                    ref={ref}
                     style={canvasWrapperStyles}
                 >
                     <canvas
@@ -330,7 +329,7 @@ const ReactGlTransitionImage = React.forwardRef((props, ref) => {
             )}
         </div>
     );
-});
+}
 
 ReactGlTransitionImage.propTypes = {
     src: PropTypes.string.isRequired,
@@ -348,7 +347,7 @@ ReactGlTransitionImage.propTypes = {
 ReactGlTransitionImage.defaultProps = {
     className: '',
     style: {},
-    onAssetsLoaded: () => {},
+    onAssetsLoaded: () => { },
     transition: blobbyTransition,
     transitionAlpha: false,
     textures: [],
